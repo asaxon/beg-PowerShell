@@ -1,0 +1,67 @@
+SQLDev PowerShell 101: Getting Started with PowerShell
+
+****
+Using PowerShell to create and/or modify:
+
+1. Table schema
+2. Stored Procedures
+3. Indexes
+
+I.e Automating code dev and database tuning processes.
+
+-----------------------------------------------------------
+
+7/28/2014
+
+A. Change Execution Policy from "Restricted" - which prevents the execution of PowerShell scripts - to something more accessible
+
+-----------------------
+More info about execution policy:
+Get-Help About-Signing
+-----------------------
+
+i. Set-ExecutionPolicy RemoteSigned (powershell needs to be opened/run as admin)
+
+ii. Confirm change took place: Get-ExecutionPolicy
+
+B. Get-Alias Dir (Dir = Get-ChildItem)
+
+C. Search directory (and sub directorys) looking for pattern of "sparse", sorting objects, selecting the object path after sort, getting unique path and presenting (passing) it as a string
+
+i. Get-ChildItem = 				search the current filepath/directory
+ii. Recurse =					search within filepath subdirectories
+iii. Select-String =				find string
+iv. -Pattern "<pattern>" =			looking for pattern containing "<pattern>"
+v. Sort-Object =				sort the objects
+vi. Select-Object <object type> =		select all objects of <object type>
+vii. Get-Unique =				return one result if multiples found
+viii. -AsString =				return results as String data
+
+Example:
+
+a. Run -
+
+PS H:\> Get-ChildItem -Recurse | Select-String -pattern "sparse" | sort-object | select-Object path | get-unique -AsString
+
+b. Returns - (it cut off the full filepath name because I didn't specify to give me the whole string)
+
+Path                                                                                                                   
+----                                                                                                                   
+H:\Desktop backup 20140513\Support Case Material\CampusVue Prod Tickets\CCi\case1191056\sproc_Student_FinancialAid_I...
+H:\Desktop backup 20140513\Support Case Material\CampusVue Prod Tickets\CCi\cci issue\Declare query showing multiple...
+H:\Desktop backup 20140513\Support Case Material\SPACE JAM WATER (AKA COMMON SOLUTIONS)\proc_FA_CODGetPellOrig_Regul...
+H:\Desktop backup 20140513\Support Case Material\SQL Queries 2008 R2\Often Used Queries copy.txt                       
+H:\Desktop backup 20140513\Support Case Material\SQL Queries 2008 R2\Often Used Queries.txt                            
+H:\Desktop backup 20140513\Support Case Material\SQL Queries 2012\OFFSET and FETCH.sql                                 
+H:\Desktop backup 20140722\Support Case Material\CampusVue Prod Tickets\CCi\case1191056\sproc_Student_FinancialAid_I...
+H:\Desktop backup 20140722\Support Case Material\CampusVue Prod Tickets\CCi\cci issue\Declare query showing multiple...
+H:\Desktop backup 20140722\Support Case Material\Personal Queries\SQL\SQL Queries 2008 R2\Often Used Queries copy 2.txt
+H:\Desktop backup 20140722\Support Case Material\Personal Queries\SQL\SQL Queries 2008 R2\Often Used Queries copy.txt  
+H:\Desktop backup 20140722\Support Case Material\Personal Queries\SQL\SQL Queries 2008 R2\Often Used Queries.txt       
+H:\Desktop backup 20140722\Support Case Material\Personal Queries\SQL\SQL Queries 2012\OFFSET and FETCH.sql            
+H:\Desktop backup 20140722\Support Case Material\SPACE JAM WATER (AKA COMMON SOLUTIONS)\proc_FA_CODGetPellOrig_Regul...
+
+
+
+
+
