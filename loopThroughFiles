@@ -1,0 +1,20 @@
+$fileDirectory = "\\ccare1\FirstwaveAttachments\corpfa18@centura.edu\1209033\172012";
+$parse_results = New-Object System.Collections.ArrayList;
+
+#	Use a foreach to loop through all the files in a directory.
+#	This method allows us to easily track the file name so we can report
+#	our findings by file.
+foreach($file in Get-ChildItem $fileDirectory)
+{
+	# We will need to tell the Switch command exactly where to parse, so
+	# we'll put together the full file path.
+	$filePath = $fileDirectory + "\" + $file;
+	# parse all files using a regular expression
+	Switch -regex (Get-Content -path $filePath)
+	{
+		# send the counter to $null so it doesn't display on screen
+			'14op' { $parse_results.add($file.name + " > " + $switch.current ' + "'r'n") > $null }
+	}
+}
+
+write-host $parse_results;
