@@ -1,0 +1,1 @@
+Get-childitem -path "\\ccare1\firstwaveattachments\corpfa18@centura.edu\1209033" -recurse -name | out-file C:\users\asaxon\desktop\filenames.txt
