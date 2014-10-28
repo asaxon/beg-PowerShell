@@ -1,0 +1,1 @@
+Write-Host (dir \\gen\corp\financialaid\ede\adricfaa\adric\adrictempdownloads | Measure-Object).Count
