@@ -1,0 +1,1 @@
+dir | rename-item -newname { $_.Name +".dat" }
