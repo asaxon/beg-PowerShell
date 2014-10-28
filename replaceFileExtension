@@ -1,0 +1,2 @@
+#Replacing .dat with .txt
+Dir *.dat | rename-item -newname { $_.name -replace ".dat",".txt" }
