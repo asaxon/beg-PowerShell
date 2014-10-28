@@ -1,0 +1,1 @@
+Get-ChildItem -recurse | Select-String -pattern " the Cubs haven't won the World Series in a LONG time " | group path | select name
