@@ -1,0 +1,38 @@
+<#
+FileName:	ExportEnabledUsersAD.ps1
+Author	:	Adric Saxon
+Date	:	9/21/2017
+PBI 	:	
+Purpose	:	List of enabled AD users for client review. Client to then decide how to manage deactivated users either removal, 
+			best practice to remove users, though client may just use deactivated users group to organize for quicker account reinstatement.
+			
+			!!Make sure logged in as administrator else your permissions won't allow viewing, even if Domain Admin!!
+			
+History	:	
+		
+
+#>
+
+##Import ActiveDirectory module
+Import-Module ActiveDirectory
+
+##Setting date for results file
+$Date = Get-Date
+$DateStr = $Date.ToString("yyyyMMddhhmm")
+$FileName = "EnabledADAccounts" + $DateStr
+
+##List all enabled AD users
+$FindEnabledAD = Get-AdUser -filter 'enabled -eq $true'
+
+
+##Filter the results of above
+$FilteringDisabledAD = Select name,samaccountname,givenname,surname,Enabled
+
+## What are you searching for & Where ? 
+$Files = $FindDisabledAD |  $FilteringDisabledAD > c:\$FileName
+## Thanks, I'll look now"
+Write-Host "Searching Logs..."
+## $Files | group path | select name | format-list > c:\$FileName
+Write-Host "Done searching!"
+Read-Host 'Press Enter to continue...' | Out-Null
+
