@@ -22,11 +22,11 @@ $DateStr = $Date.ToString("yyyyMMddhhmm")
 $FileName = "EnabledADAccounts" + $DateStr
 
 ##List all enabled AD users
-$FindEnabledAD = Get-AdUser -filter 'enabled -eq $true'
+$FindEnabledAD = Get-AdUser -filter 'enabled -eq $true' -properties *
 
 
 ##Filter the results of above
-$FilteringDisabledAD = Select name,samaccountname,givenname,surname,Enabled
+$FilteringDisabledAD = Select name,samaccountname,givenname,surname,Enabled,createtimestamp,lastlogondate
 
 ## What are you searching for & Where ? 
 $Files = $FindDisabledAD |  $FilteringDisabledAD > c:\$FileName
