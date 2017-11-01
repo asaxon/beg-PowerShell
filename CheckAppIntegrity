@@ -1,0 +1,3 @@
+## Checking integrity of app using certutil, navigate to download path 1st
+cd users\asaxon\downloads
+certutil -hashfile gpg4win-3.0.0.exe sha1
